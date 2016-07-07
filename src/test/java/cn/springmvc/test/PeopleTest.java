@@ -46,10 +46,17 @@ private PeopleService peopleService;
 //		
 //	}
 	
+//	@Test
+//	public void pageCount(){
+//
+//		System.out.println(peopleService.pageCount());
+//		
+//	}
+	
 	@Test
-	public void pageCount(){
+	public void delPeople(){
 
-		System.out.println(peopleService.pageCount());
+		peopleService.delPeople(2);
 		
 	}
 }

@@ -39,7 +39,7 @@
 <body>
 
 	<c:forEach items="${data }" var="people">
-${ people.name}:${ people.phone}:${ people.count}</br>
+${ people.name}:${ people.phone}:${ people.count}:${ people.id}</br>
 	</c:forEach>
 	<span id="info"></span>
 	<input type="button" value="next" onclick="nextpage()" />

@@ -31,8 +31,12 @@ public class PeopleServiceImpl implements PeopleService{
 	@Override
 	public int pageCount() {
 
-		
 		return peopleDAO.pageCount();
+	}
+
+	@Override
+	public void delPeople(int id) {
+		peopleDAO.delPeople(id);
 	}
 
 

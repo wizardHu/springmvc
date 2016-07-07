@@ -16,6 +16,8 @@
     <!-- 扫描controller（controller层注入） -->
    <context:component-scan base-package="cn.springmvc.controller"/>
 	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/assets/**" location="/assets/" />
+	<mvc:resources mapping="/docs/**" location="/docs/" />
 
    
    <!-- 避免IE在ajax请求时，返回json出现下载 -->

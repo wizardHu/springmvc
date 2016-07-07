@@ -28,6 +28,10 @@ public interface PeopleDAO {
 	 * @return
 	 */
 	public int pageCount();
-	
+
+	/**
+	 * 删除记录
+	 */
+	public void delPeople(@Param(value="id") int id);
 	
 }

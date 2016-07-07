@@ -29,6 +29,9 @@
 		select count(*) from people
 	</select>
 
+	<delete id="delPeople" parameterType="int" >
+		delete from people where id=#{id} 
+	</delete>
 
 
 </mapper>
