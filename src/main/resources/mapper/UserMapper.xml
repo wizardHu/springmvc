@@ -22,7 +22,7 @@
 	</insert>
 
 	<select id="showPeopleList" parameterType="int" resultMap="people">
-		select * from people limit #{page},10
+		select * from people  order by id desc limit #{page},10
 	</select>
 	
 	<select id="pageCount" parameterType="int" resultType="int">
@@ -30,8 +30,14 @@
 	</select>
 
 	<delete id="delPeople" parameterType="int" >
-		delete from people where id=#{id} 
+		delete from people where id=#{id}
 	</delete>
 
-
+	<select id="getPeopleById" parameterType="People" resultMap="people">
+		select * from people  where id = #{id}
+	</select>
+	
+	<update id="updatePeople"  parameterType="People" >
+	</update>
+	
 </mapper>

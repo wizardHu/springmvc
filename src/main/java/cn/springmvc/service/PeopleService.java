@@ -13,4 +13,5 @@ public interface PeopleService {
 	public List<People> showPeopleList(int page);
 	public int pageCount();
 	public void delPeople(int id);
+	
 }

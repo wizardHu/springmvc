@@ -34,4 +34,16 @@ public interface PeopleDAO {
 	 */
 	public void delPeople(@Param(value="id") int id);
 	
+	/**
+	 * 得到people
+	 * @param id
+	 * @return
+	 */
+	public People getPeopleById(@Param(value="id") int id);
+	
+	/**
+	 * 更新
+	 */
+	public void updatePeople(People people);
+	
 }

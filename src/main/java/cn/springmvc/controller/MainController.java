@@ -6,11 +6,15 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.alibaba.druid.stat.TableStat.Mode;
 
 import cn.springmvc.model.People;
 import cn.springmvc.service.PeopleService;
@@ -29,7 +33,6 @@ public class MainController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("redirect:/list/1");
-
 		return mav;
 	}
 
@@ -84,10 +87,39 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/del/{id}/{page}", method = RequestMethod.GET)
 	public ModelAndView del(@PathVariable int id, @PathVariable int page) {
-
 		peopleService.delPeople(id);
-
 		return new ModelAndView("redirect:/list/" + page);
 	}
 
+	/**
+	 * 跳转到新增人数的JSP
+	 * @return
+	 */
+	@RequestMapping("/skiptojsp/add")
+	public String skipToAddJsp(Model model){
+		model.addAttribute("people", new People());
+		return "add";
+	}
+	
+	/**
+	 * 添加人数
+	 * @param people
+	 * @return
+	 */
+	@RequestMapping("/addPeople")
+	public ModelAndView addPeople(@ModelAttribute People people){
+		ModelAndView mav = new ModelAndView("redirect:/list/1");
+		peopleService.insertPeople(people);
+		
+		return mav;
+	}
+	
+	@RequestMapping("/editBook/{id}")
+	public String editBook(@PathVariable int id,Model model){
+		
+		
+		
+		return null;
+		
+	}
 }
