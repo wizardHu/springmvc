@@ -1,7 +1,5 @@
 package cn.springmvc.test;
 
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -24,16 +22,23 @@ private PeopleService peopleService;
 		peopleService = (PeopleService) context.getBean("peopleServiceImpl");
 	}
 	
-//	@Test
-//	public void addUser(){
-//		People people = new People();
-//		for (int i = 0; i < 2000; i++) {
-//			people.setCount(i);
-//			people.setName("amplee"+i);
-//			people.setPhone("123"+i);
-//			System.out.println(peopleService.insertPeople(people));
-//		}
-//	}
+	@Test
+	public void addUser(){
+		People people = new People();
+		for (int i = 0; i < 200; i++) {
+			if(i%3==0){
+				people.setAuthority("超级管理员");
+			}else if(i%3 == 1){
+				people.setAuthority("配送员");
+			}else{
+				people.setAuthority("采购助理");
+			}
+			
+			people.setName("amplee"+i);
+			people.setPhone("1557583242"+i%10);
+			System.out.println(peopleService.insertPeople(people));
+		}
+	}
 	
 //	@Test
 //	public void showPeople(){
@@ -53,10 +58,10 @@ private PeopleService peopleService;
 //		
 //	}
 	
-	@Test
-	public void delPeople(){
-
-		peopleService.delPeople(2);
-		
-	}
+//	@Test
+//	public void delPeople(){
+//
+//		peopleService.delPeople(2);
+//		
+//	}
 }

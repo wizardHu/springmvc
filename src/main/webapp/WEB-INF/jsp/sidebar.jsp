@@ -132,11 +132,11 @@
 				</a> <b class="arrow"></b>
 
 					<ul class="submenu">
-						<li class="active"><a href="../skiptojsp/add"> <i
+						<li class="active"><a href="./skiptojsp/add"> <i
 								class="menu-icon fa fa-caret-right"></i> 新增人数
 						</a> <b class="arrow"></b></li>
 
-						<li class=""><a href="../index"> <i
+						<li class=""><a href="./index"> <i
 								class="menu-icon fa fa-caret-right"></i> 人数列表
 						</a> <b class="arrow"></b></li>
 					</ul></li>

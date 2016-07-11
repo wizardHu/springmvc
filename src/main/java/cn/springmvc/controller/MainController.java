@@ -1,5 +1,6 @@
 package cn.springmvc.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,16 +48,21 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("tables");
 
-		int pageCount = peopleService.pageCount();
-		if (page > (pageCount/10)) {
-			page = pageCount/10;
+		long peopleCount = peopleService.pageCount();
+		int pageCount = (int) (peopleCount/10);
+		
+		if((peopleCount%10)!=0){
+			pageCount++;
+		}
+		if (page > pageCount && pageCount!=0) {
+			page = pageCount;
 		} else if (page < 1) {
 			page = 1;
 		}
 		List<People> list = peopleService.showPeopleList((page - 1) * 10);
 
 		mav.addObject("data", list);
-		mav.addObject("pageCount", pageCount / 10);
+		mav.addObject("pageCount", pageCount );
 		mav.addObject("nowPage", page);
 
 		return mav;
@@ -97,7 +103,13 @@ public class MainController {
 	 */
 	@RequestMapping("/skiptojsp/add")
 	public String skipToAddJsp(Model model){
+		List<String> authority = new ArrayList<String>();
+		authority.add(" ");
+		authority.add("超级管理员");
+		authority.add("配送员");
+		authority.add("采购助理");
 		model.addAttribute("people", new People());
+		model.addAttribute("authority", authority);
 		return "add";
 	}
 	
@@ -108,18 +120,71 @@ public class MainController {
 	 */
 	@RequestMapping("/addPeople")
 	public ModelAndView addPeople(@ModelAttribute People people){
+		
 		ModelAndView mav = new ModelAndView("redirect:/list/1");
 		peopleService.insertPeople(people);
 		
 		return mav;
 	}
 	
-	@RequestMapping("/editBook/{id}")
-	public String editBook(@PathVariable int id,Model model){
+	/**
+	 * 跳转更新页面
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/editBook/{id}/{page}")
+	public String editBook(@PathVariable int page,@PathVariable int id,Model model){
 		
+		List<String> authority = new ArrayList<String>();
+		authority.add(" ");
+		authority.add("超级管理员");
+		authority.add("配送员");
+		authority.add("采购助理");
 		
+		People people = peopleService.getPeopleById(id);
+		model.addAttribute("people", people);
+		model.addAttribute("id", id);
+		model.addAttribute("id", page);
+		model.addAttribute("authority", authority);
+		return "edit";
+	}
+	
+	/**
+	 * 更新
+	 * @param page
+	 * @param id
+	 * @param people
+	 * @return
+	 */
+	@RequestMapping("/updateBook/{id}/{page}")
+	public String updateBook(@PathVariable int page,@PathVariable int id,@ModelAttribute People people){
+		
+		peopleService.updatePeople(people);
+		return "redirect:/list/"+page;
+	}
+	
+	@RequestMapping("/test")
+	public String skipToDataTable(){
+		return "datatables";
+	}
+	
+	@RequestMapping("/getall")
+	@ResponseBody
+	public Map<String, Object> getAllRecords(){
+		
+		 Map<String, Object> map = new HashMap<String, Object>();
+		 List<People> list = new ArrayList<People>();
+		 
+		 for (int i = 0; i < 20; i++) {
+			 list.add(new People("amplee"+1, ""+i, i, "qwe"));
+		 }
+		
+		 map.put("data", list);
+		 map.put("draw", 1);
+		 map.put("recordsTotal", 57);
+		 map.put("recordsFiltered", 57);
 		
 		return null;
-		
 	}
 }

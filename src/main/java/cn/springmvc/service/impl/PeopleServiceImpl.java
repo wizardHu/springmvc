@@ -39,5 +39,15 @@ public class PeopleServiceImpl implements PeopleService{
 		peopleDAO.delPeople(id);
 	}
 
+	@Override
+	public void updatePeople(People people) {
+		peopleDAO.updatePeople(people);
+	}
+
+	@Override
+	public People getPeopleById(int id) {
+		return peopleDAO.getPeopleById(id);
+	}
+
 
 }

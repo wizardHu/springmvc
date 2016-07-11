@@ -1,16 +1,29 @@
 package cn.springmvc.model;
 
-import java.sql.Date;
-
- 
 public class People {
 
 	private String name;
-	 private int count;
 	 private String phone;
 	 private int id;
+	 private String authority;
 	 
-	 public int getId() {
+	 public String getAuthority() {
+		return authority;
+	}
+	 public void setAuthority(String authority) {
+		this.authority = authority;
+	}
+	 
+	 
+	 
+	 public People(String name,  String phone, int id, String authority) {
+		super();
+		this.name = name;
+		this.phone = phone;
+		this.id = id;
+		this.authority = authority;
+	}
+	public int getId() {
 		return id;
 	}
 	 public void setId(int id) {
@@ -36,27 +49,4 @@ public class People {
 		this.phone = phone;
 	}
 
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
-	public People(String name, int count, String phone) {
-		super();
-		this.name = name;
-		this.count = count;
-		this.phone = phone;
-	}
-	public People(String name, int count, String phone, int id) {
-		super();
-		this.name = name;
-		this.count = count;
-		this.phone = phone;
-		this.id = id;
-	}
-
-	
 }

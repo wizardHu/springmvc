@@ -7,17 +7,17 @@
 	<resultMap type="People" id="people">
 		<id column="id" property="id" />
 		<result column="people_name" property="name" />
-		<result column="people_count" property="count" />
+		<result column="people_authority" property="authority" />
 		<result column="people_phone" property="phone" />
 	 
 	</resultMap>
 
 	<insert id="insertPeople" parameterType="People" keyProperty="id">
-		insert into people(people_name,people_count,people_phone)
+		insert into people(people_name,people_authority,people_phone)
 		values
 		(
 		#{name},
-		#{count},
+		#{authority},
 		#{phone})
 	</insert>
 
@@ -38,6 +38,8 @@
 	</select>
 	
 	<update id="updatePeople"  parameterType="People" >
+		update people set people_name=#{name}, people_phone=#{phone},people_authority=#{authority}
+		where id=#{id}
 	</update>
 	
 </mapper>

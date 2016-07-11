@@ -13,5 +13,6 @@ public interface PeopleService {
 	public List<People> showPeopleList(int page);
 	public int pageCount();
 	public void delPeople(int id);
-	
+	public void updatePeople(People people);
+	public People getPeopleById(@Param(value="id") int id);
 }
